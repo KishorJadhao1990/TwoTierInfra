@@ -26,6 +26,8 @@ sudo usermod -aG docker ubuntu
 
 # Install Docker Compose plugin   
 sudo apt update
-sudo apt install docker-compose-plugin -y
+sudo apt  install docker-compose
+
+mkdir /home/ubuntu/sonarqube
 
 docker-compose up -d
