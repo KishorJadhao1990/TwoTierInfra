@@ -13,6 +13,7 @@ module "network" {
   source             = "./modules/network"
   project_name       = module.vpc.project_name
   vpc_id             = module.vpc.vpc_id
+  vpc_cidr           = module.vpc.vpc_cidr
   public_subnet_ids  = module.vpc.public_subnet_ids
   private_subnet_ids = module.vpc.private_subnet_ids
 }

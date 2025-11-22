@@ -8,6 +8,11 @@ variable "vpc_id" {
   description = "VPC id"
 }
 
+variable "vpc_cidr" {
+  type = string
+  description = "VPC CIDR block"
+}
+
 variable "public_subnet_ids" {
   type = list(string)
   description = "Public subnet ids"

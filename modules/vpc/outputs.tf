@@ -7,6 +7,11 @@ output "vpc_id" {
   description = "VPC Id after creation"
 }
 
+output "vpc_cidr" {
+  value       = aws_vpc.vpc.cidr_block
+  description = "VPC CIDR block after creation"
+}
+
 output "public_subnet_ids" {
   value       = aws_subnet.public_subnets[*].id
   description = "Public Subnet Ids after creation"
