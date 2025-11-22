@@ -25,7 +25,7 @@ module "webserver" {
   instance_type    = "t3.micro"
   key_name         = "docker-pair"
   enable_public_ip = true
-  subnet_id        = module.vpc.private_subnet_ids[0]
+  subnet_id        = module.vpc.public_subnet_ids[0]
   security_groups  = module.network.ec2_security_groups
   boot_script      = "modules/script/docker-user-data.sh" 
   tags = {
@@ -35,16 +35,16 @@ module "webserver" {
 }
 
 // SonarQube Server
-module "webserver" {
+module "sonarqube" {
   source           = "./modules/compute"
   project_name     = module.vpc.project_name
   ami              = "ami-02b8269d5e85954ef"
   instance_type    = "c7i-flex.large"
   key_name         = "docker-pair"
   enable_public_ip = true
-  subnet_id        = module.vpc.private_subnet_ids[0]
+  subnet_id        = module.vpc.public_subnet_ids[0]
   security_groups  = module.network.ec2_security_groups
-  boot_script      = "modules/script/docker-user-data.sh" 
+  boot_script      = "modules/script/sonar-user-data.sh" 
   tags = {
     Name        = "${module.vpc.project_name}-sonarqube-server"
     Environment = "Development"
