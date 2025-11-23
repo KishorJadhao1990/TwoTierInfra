@@ -29,5 +29,3 @@ sudo apt update
 sudo apt  install docker-compose
 
 mkdir /home/ubuntu/sonarqube
-
-docker-compose up -d

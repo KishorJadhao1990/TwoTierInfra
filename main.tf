@@ -28,7 +28,7 @@ module "webserver" {
   enable_public_ip = true
   subnet_id        = module.vpc.public_subnet_ids[0]
   security_groups  = module.network.ec2_security_groups
-  boot_script      = "modules/script/docker-user-data.sh" 
+  boot_script      = "modules/script/docker-user-data.sh"
   tags = {
     Name        = "${module.vpc.project_name}-web-server"
     Environment = "Development"
@@ -45,9 +45,17 @@ module "sonarqube" {
   enable_public_ip = true
   subnet_id        = module.vpc.public_subnet_ids[0]
   security_groups  = module.network.ec2_security_groups
-  boot_script      = "modules/script/sonar-user-data.sh" 
+  boot_script      = "modules/script/sonar-user-data.sh"
   tags = {
     Name        = "${module.vpc.project_name}-sonarqube-server"
     Environment = "Development"
   }
+}
+
+module "postgres" {
+  source             = "./modules/database"
+  vpc_id             = module.vpc.vpc_id
+  project_name       = module.vpc.project_name
+  security_group_ids = module.network.rds_security_groups
+  private_subnet_ids = module.vpc.private_subnet_ids
 }
